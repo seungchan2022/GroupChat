@@ -41,8 +41,16 @@ struct SampleReducer {
         sideEffect.routeToHome()
         return .none
 
+      case .test:
+        sideEffect.useCaseGroup.toastViewModel.send(message: "성공")
+        return .none
+
+      case .test2:
+        sideEffect.useCaseGroup.toastViewModel.send(errorMessage: "실패")
+        return .none
+
       case .throwError(let error):
-        print(error.displayMessage)
+        sideEffect.useCaseGroup.toastViewModel.send(errorMessage: error.displayMessage)
         return .none
       }
     }
@@ -72,6 +80,9 @@ extension SampleReducer {
     case fetchSample(Result<String, CompositeErrorRepository>)
 
     case onTapHome
+
+    case test
+    case test2
 
     case throwError(CompositeErrorRepository)
 

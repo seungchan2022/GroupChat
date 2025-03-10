@@ -18,6 +18,15 @@ extension SamplePage: View {
       }
 
       Text(store.text)
+
+      Button(action: { store.send(.test) }) {
+        Text("성공")
+      }
+
+      Button(action: { store.send(.test2) }) {
+        Text("실패")
+      }
+
       Spacer()
     }
     .onAppear {
